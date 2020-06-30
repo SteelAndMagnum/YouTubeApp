@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var hell: String = ""
+    var model = Model()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        hell = "I am in Trouble"
+        model.getVideos()
     }
 
     override func didReceiveMemoryWarning() {
