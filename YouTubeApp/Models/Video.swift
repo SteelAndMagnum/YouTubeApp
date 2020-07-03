@@ -6,25 +6,27 @@
 //  Copyright © 2020 steelandmagnum. All rights reserved.
 //
 
+// STEP 3 BEGINS: Create this file
+
 import Foundation
 
-struct Video : Decodable {
+// STEP 4 BEGINS:
+struct Video : Decodable { // STEP 8 BGINS: Added Decodable
     
-    //var snippet = ""
     var videoId = ""
     var title = ""
     var description = ""
     var thumbnail = ""
     var published = Date()
-    //var high = ""
-    //var resourcesId = ""
+   // STEP 4 ENDS
     
+    // STEP 10 BEGINS
     enum CodingKeys: String, CodingKey {
         // Specify the set of keys to be use
         
         // First specify the over arching JSOn in which all the key value pairs we are looking for resides
         case snippet // Contains all
-        case thumbnail = "url" // Contains high
+        case thumbnails
         case high //contains url
         case resourceId // Contains VideoId
         
@@ -33,11 +35,15 @@ struct Video : Decodable {
         // case title = "title" Cos name matches we do it as below. Same applies to the rest that are similar
         case title
         case description
+        case thumbnail = "url" // Contains high
         case videoId
     }
+    // STEP 10 ENDS
     
+    // STEP 9 BEGINS: Declare this function
     init (from decoder: Decoder) throws {
         
+        // STEP 11 BEGINS
         // Call multi-nested pairs of Containers (meaning JSON object)
         // Grab the Items JSON object
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -54,8 +60,8 @@ struct Video : Decodable {
         // Parse the publish date
         self.published = try snippetContainer.decode(Date.self, forKey: .published)
         
-        // Grab the thumbnail JSON
-        let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnail)
+        // Grab the thumbnails JSON
+        let thumbnailContainer = try snippetContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnails)
         
         // Grab the high JSON
         let highContainer = try thumbnailContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .high)
@@ -69,7 +75,7 @@ struct Video : Decodable {
         // Parse the videoId
         self.videoId = try resourceIdContainer.decode(String.self, forKey: .videoId)
         
-        
+        // STEP 11 ENDS
     }
     
 }

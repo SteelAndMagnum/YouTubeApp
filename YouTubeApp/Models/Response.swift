@@ -6,8 +6,11 @@
 //  Copyright © 2020 steelandmagnum. All rights reserved.
 //
 
+// STEP 12 BEGINS: Create this File
+
 import Foundation
 
+// STEP 13 BEGINS
 struct Response: Decodable {
     
     var items:[Video]?
@@ -28,3 +31,4 @@ struct Response: Decodable {
         
     }
 }
+// STEP 13 ENDS
